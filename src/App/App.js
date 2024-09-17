@@ -24,17 +24,23 @@ function App() {
     .catch(err => console.log(err))
   }
 
-  const updateVotes = (id) => {
-    fetch('http://localhost:3001/api/v1/movies', {
+  const updateVotes = (id, direction) => {
+    fetch(`http://localhost:3001/api/v1/movies/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id })
+      body: JSON.stringify({ vote_direction: direction })
     })
     .then(res => res.json())
     .then(data => {
-      setMovies(data)
+      let updatedMovies = [...movies].map(movie => {
+        if (movie.id === id) {
+          movie.vote_count = data.vote_count
+        }
+        return movie
+      })
+      setMovies(updatedMovies)
     })
     .catch(err => console.log(err))
   }

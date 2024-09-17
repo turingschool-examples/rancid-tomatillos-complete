@@ -24,10 +24,8 @@
 
 .vote-box {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding-top: 7.5px;
-  width: 40px;
 }
 
 .vote-box button {
