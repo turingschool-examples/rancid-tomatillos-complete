@@ -7,8 +7,7 @@ import searchIcon from '../icons/search.png';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [individualMovie, setIndividualMovie] = useState({});
-  const [individualView, setIndividualView] = useState(false);
+  const [individualMovieId, setIndividualMovieId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -16,7 +15,7 @@ function App() {
   }, []);
 
   const getMovies = () => {
-    fetch('http://localhost:3001/api/v1/movies')
+    fetch('https://rancid-tomatillos-api-cc6f59111a05.herokuapp.com/api/v1/movies')
     .then(res => res.json())
     .then(data => {
       setMovies(data)
@@ -25,7 +24,7 @@ function App() {
   }
 
   const updateVotes = (id, direction) => {
-    fetch(`http://localhost:3001/api/v1/movies/${id}`, {
+    fetch(`https://rancid-tomatillos-api-cc6f59111a05.herokuapp.com/api/v1/movies/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -46,17 +45,11 @@ function App() {
   }
 
   const viewMovie = (id) => {
-    fetch(`http://localhost:3001/api/v1/movies/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      setIndividualMovie(data);
-      setIndividualView(true);
-    })
-    .catch(err => console.log(err))
+    setIndividualMovieId(id)
   }
 
   const goHome = () => {
-    setIndividualView(false);
+    setIndividualMovieId(null);
   }
 
   const searchMovies = () => {
@@ -71,13 +64,13 @@ function App() {
 
   return (
     <main className='App'>
-      {individualView
+      {individualMovieId
       ? <>
         <header>
           <h1>rancid tomatillos</h1>
           <img onClick={goHome} src={homeButton}/>
         </header>
-        <MovieDetails movie={individualMovie}/> 
+        <MovieDetails id={individualMovieId}/> 
       </>
       : <>
         <header>
