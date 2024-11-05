@@ -4,6 +4,7 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 import { useState, useEffect } from 'react';
 import homeButton from '../icons/home.png';
 import searchIcon from '../icons/search.png';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const [movies, setMovies] = useState([]);
