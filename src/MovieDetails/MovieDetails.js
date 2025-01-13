@@ -5,7 +5,7 @@ function MovieDetails({ id }) {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    fetch(`https://rancid-tomatillos-api-cc6f59111a05.herokuapp.com/api/v1/movies/${id}`)
+    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
       .then(res => res.json())
       .then(data => {
         setMovie(data);

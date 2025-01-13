@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   const getMovies = () => {
-    fetch('https://rancid-tomatillos-api-cc6f59111a05.herokuapp.com/api/v1/movies')
+    fetch('https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies')
     .then(res => res.json())
     .then(data => {
       setMovies(data)
@@ -25,7 +25,7 @@ function App() {
   }
 
   const updateVotes = (id, direction) => {
-    fetch(`https://rancid-tomatillos-api-cc6f59111a05.herokuapp.com/api/v1/movies/${id}`, {
+    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
